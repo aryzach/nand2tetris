@@ -153,13 +153,125 @@ class CodeWriter:
     if command == 'C_PUSH':
       self.writeASM(self.handlePush(segment, index))
     elif command == 'C_POP':
-      handlePop(segment, index)
+      self.writeASM(self.handlePop(segment, index))
+
+  def handlePopHelper(self, list, index):
+    list.append('D=M')
+    list.append('@{}'.format(index))
+    list.append('D=D+A')
+    list.append('@R15')
+    list.append('M=D')  # R15 holds address where to store *sp val
+    list.append('@SP')
+    list.append('D=M-1')
+    list.append('M=D')
+    list.append('@SP')
+    list.append('A=M')
+    list.append('D=M')
+    list.append('@R15')
+    list.append('A=M')
+    list.append('M=D')
+    return list
+
+  def handlePopHelperTemp(self, list, index):
+    list.append('D=A')
+    list.append('@{}'.format(index))
+    list.append('D=D+A')
+    list.append('@R15')
+    list.append('M=D')  # R15 holds address where to store *sp val
+    list.append('@SP')
+    list.append('D=M-1')
+    list.append('M=D')
+    list.append('@SP')
+    list.append('A=M')
+    list.append('D=M')
+    list.append('@R15')
+    list.append('A=M')
+    list.append('M=D')
+    return list
+
+  def handlePop(self, segment, index):
+    list = []
+    if segment == 'local':
+      list.append('@LCL')
+      list =  self.handlePopHelper(list, index)
+    if segment == 'argument':
+      list.append('@ARG')
+      list = self.handlePopHelper(list, index)
+    if segment == 'this':
+      list.append('@THIS')
+      list = self.handlePopHelper(list, index)
+    if segment == 'that':
+      list.append('@THAT')
+      list =  self.handlePopHelper(list, index)
+    if segment == 'temp':
+      list.append('@R5')
+      list =  self.handlePopHelperTemp(list, index)
+    if segment == 'pointer':
+      list.append('@SP')
+      list.append('D=M-1')
+      list.append('M=D')
+      list.append('@SP')
+      list.append('A=M')
+      list.append('D=M')
+      if index == '0':
+        list.append('@THIS')
+      if index == '1':
+        list.append('@THAT')
+      list.append('M=D')
+    return list
+
+  def handlePushHelper(self, list, index):
+    list.append('D=M')
+    list.append('@{}'.format(index))
+    list.append('D=D+A')
+    list.append('A=D')
+    list.append('D=M')   # D = val to add to stack
+    list.append('@R15')
+    list.append('M=D')   #R15 = val to add to stack
+    list.append('@SP')
+    list.append('A=M')
+    list.append('M=D')
+    list.append('@SP')
+    list.append('D=M+1')
+    list.append('M=D')
+    return list
+
+  def handlePushHelperTemp(self, list, index):
+    list.append('D=A')
+    list.append('@{}'.format(index))
+    list.append('D=D+A')
+    list.append('A=D')
+    list.append('D=M')   # D = val to add to stack
+    list.append('@R15')
+    list.append('M=D')   #R15 = val to add to stack
+    list.append('@SP')
+    list.append('A=M')
+    list.append('M=D')
+    list.append('@SP')
+    list.append('D=M+1')
+    list.append('M=D')
+    return list
+
 
   def handlePush(self, segment, index):
-    # need to add more
+    # need local, arg, this, that, temp
+    list = []
+    if segment == 'local':
+      list.append('@LCL')
+      list =  self.handlePushHelper(list, index)
+    if segment == 'argument':
+      list.append('@ARG')
+      list =  self.handlePushHelper(list, index)
+    if segment == 'this':
+      list.append('@THIS')
+      list =  self.handlePushHelper(list, index)
+    if segment == 'that':
+      list.append('@THAT')
+      list =  self.handlePushHelper(list, index)
+    if segment == 'temp':
+      list.append('@R5')
+      list =  self.handlePushHelperTemp(list, index)
     if segment == 'constant':
-      list = []
-      #RAM_location = self.stack.sp
       list.append('@{}'.format(index))
       list.append('D=A')
       list.append('@SP')
@@ -167,7 +279,19 @@ class CodeWriter:
       list.append('M=D')
       list.append('@SP')
       list.append('M=M+1')
-      return list 
+    if segment == 'pointer':
+      if index == '0':
+        list.append('@THIS')
+      if index == '1':
+        list.append('@THAT')
+      list.append('D=M')
+      list.append('@SP')
+      list.append('A=M')
+      list.append('M=D')
+      list.append('@SP')
+      list.append('D=M+1')
+      list.append('M=D')
+    return list 
       
   # list of ASM -> write each to outfile
   def writeASM(self, loASM):
@@ -182,7 +306,9 @@ class CodeWriter:
     list.append('D=A')
     list.append('@SP')
     list.append('M=D')
+
     self.writeASM(list)
+
 
   def close(self):
     self.openedoutfile.close()
@@ -196,6 +322,7 @@ class MemorySegment:
 
 if __name__ == '__main__':
   # will need to handle both files and directories in future
+  # when handling a directory, make diff parsers for each file within, but still only use one CodeWriter
   filename = sys.argv[-1]
   
   p1 = Parser(filename)
