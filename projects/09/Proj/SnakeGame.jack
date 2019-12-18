@@ -1,0 +1,35 @@
+class SnakeGame {
+	field Snake s;
+
+	constructor SnakeGame new() {
+		let s = Snake.new(10);
+		return this;
+	}
+
+	method void dispose() {
+		do s.dispose();
+		do Memory.deAlloc(this);
+		return;
+	}
+	method void run() {
+		var char key;
+		var boolean exit;
+		let exit = false;
+		
+		while (~exit) {
+			while (key = 0) { 
+				do s.draw();
+				let key = Keyboard.keyPressed();
+			}
+			if (key = 81)  { let exit = true; }     // q key
+			if (key = 131) { do s.moveUp(); }
+			if (key = 133) { do s.moveDown(); }
+			if (key = 130) { do s.moveLeft(); }
+			if (key = 132) { do s.moveRight(); }
+			
+			let key = 0;
+			do Sys.wait(5); 
+		}
+		return;
+	}
+}

@@ -1,0 +1,214 @@
+function Snake.new 0
+push constant 4
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+pop this 3
+push this 3
+push constant 0
+push constant 0
+call Square.new 3
+pop this 1
+push this 1
+push constant 0
+call List.new 2
+pop this 0
+push constant 0
+pop this 2
+push pointer 0
+call Snake.draw 1
+pop temp 0
+push pointer 0
+return
+function Snake.dispose 0
+push argument 0
+pop pointer 0
+push this 0
+call List.dispose 1
+pop temp 0
+push this 1
+call Square.dispose 1
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function Snake.draw 2
+push argument 0
+pop pointer 0
+push this 0
+call List.getData 1
+pop local 0
+push this 0
+call List.getNext 1
+pop local 1
+label WHILE_EXP0
+push local 1
+push constant 0
+eq
+not
+not
+if-goto WHILE_END0
+push local 0
+call Square.draw 1
+pop temp 0
+push local 1
+call List.getData 1
+pop local 0
+push local 1
+call List.getNext 1
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function Snake.drawFirst 0
+push argument 0
+pop pointer 0
+push constant 0
+return
+function Snake.eraseLast 1
+push argument 0
+pop pointer 0
+push this 0
+call List.removeFromEnd 1
+pop local 0
+push local 0
+call Square.erase 1
+pop temp 0
+push local 0
+call Square.dispose 1
+pop temp 0
+push constant 0
+return
+function Snake.addToSnake 0
+push argument 0
+pop pointer 0
+push this 3
+push argument 1
+push argument 2
+call Square.new 3
+pop this 1
+push this 1
+push this 0
+call List.new 2
+pop this 0
+push constant 0
+return
+function Snake.moveUp 0
+push argument 0
+pop pointer 0
+push this 1
+call Square.getY 1
+push this 3
+sub
+push constant 1
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+push this 1
+call Square.getX 1
+push this 1
+call Square.getY 1
+push this 3
+sub
+call Snake.addToSnake 3
+pop temp 0
+push pointer 0
+call Snake.eraseLast 1
+pop temp 0
+push constant 0
+return
+label IF_FALSE0
+push constant 0
+return
+function Snake.moveDown 0
+push argument 0
+pop pointer 0
+push this 1
+call Square.getY 1
+push this 3
+add
+push this 3
+add
+push constant 254
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+push this 1
+call Square.getX 1
+push this 1
+call Square.getY 1
+push this 3
+add
+call Snake.addToSnake 3
+pop temp 0
+push pointer 0
+call Snake.eraseLast 1
+pop temp 0
+push constant 0
+return
+label IF_FALSE0
+push constant 0
+return
+function Snake.moveLeft 0
+push argument 0
+pop pointer 0
+push this 1
+call Square.getX 1
+push constant 1
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+push this 1
+call Square.getX 1
+push this 3
+sub
+push this 1
+call Square.getY 1
+call Snake.addToSnake 3
+pop temp 0
+push pointer 0
+call Snake.eraseLast 1
+pop temp 0
+push constant 0
+return
+label IF_FALSE0
+push constant 0
+return
+function Snake.moveRight 0
+push argument 0
+pop pointer 0
+push this 1
+call Square.getX 1
+push this 3
+add
+push constant 510
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+push this 1
+call Square.getX 1
+push this 3
+add
+push this 1
+call Square.getY 1
+call Snake.addToSnake 3
+pop temp 0
+push pointer 0
+call Snake.eraseLast 1
+pop temp 0
+push constant 0
+return
+label IF_FALSE0
+push constant 0
+return

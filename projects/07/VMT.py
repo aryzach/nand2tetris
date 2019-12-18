@@ -7,7 +7,7 @@ class Parser:
     self.currentIndex = None
     self.currentCommand = None
     self.currentCommandType = None
-    self.commandTypeDict = {'arithmetic' : 'C_ARITHMETIC', 'push' : 'C_PUSH', 'pop' : 'C_POP'}
+    self.commandTypeDict = {'arithmetic' : 'C_ARITHMETIC', 'push' : 'C_PUSH', 'pop' : 'C_POP', 'label' : 'C_LABEL', 'goto' : 'C_GOTO', 'if-goto' : 'C_IF', 'function' : 'C_FUNCTION', 'return' : 'C_RETURN', 'call' : 'C_CALL'}
     self.arithmetic = ['add', 'eq', 'lt', 'gt', 'neg', 'sub', 'or', 'not', 'and']
 
 
@@ -58,10 +58,12 @@ class CodeWriter:
     self.gotoVal1 = 0
     self.gotoVal2 = 1
     self.gotoValEnd = 2
+    self.filename = ''
 
   def setFileName(self,filename):
     print('VM translation has started')
-    return '{}.asm'.format(filename.split('.')[0])
+    self.filename = filename.split('.')[0]
+    return '{}.asm'.format(self.filename)
 
   def setNewGotoVals(self):
     self.gotoVal1 += 3
@@ -81,6 +83,18 @@ class CodeWriter:
       self.writeArithmetic(parser.arg1())
     if parser.commandType() == 'C_PUSH' or parser.commandType() == 'C_POP':
       self.writePushPop(parser.commandType(), parser.arg1(), parser.arg2())
+    if parser.commandType() == 'C_LABEL':
+      self.writeLabel(parser.arg1())
+    if parser.commandType() == 'C_GOTO':
+      self.writeGoto(parser.arg1())
+    if parser.commandType() == 'C_IF':
+      self.writeIf(parser.arg1())
+    if parser.commandType() == 'C_CALL':
+      self.writeCall(parser.arg1(), parser.arg2())
+    if parser.commandType() == 'C_RETURN':
+      self.writeReturn()
+    if parser.commandType() == 'C_FUNCTION':
+      self.writeFunction(parser.arg1(), parser.arg2())
 
   def writeArithmetic(self, command):
     self.writeASM(self.handleArithmetic(command))
@@ -218,6 +232,15 @@ class CodeWriter:
       if index == '1':
         list.append('@THAT')
       list.append('M=D')
+    if segment == 'static':
+      list.append('@SP')
+      list.append('D=M-1')
+      list.append('M=D')
+      list.append('@SP')
+      list.append('A=M')
+      list.append('D=M')
+      list.append('@{}.{}'.format(self.filename, index))
+      list.append('M=D')
     return list
 
   def handlePushHelper(self, list, index):
@@ -291,6 +314,15 @@ class CodeWriter:
       list.append('@SP')
       list.append('D=M+1')
       list.append('M=D')
+    if segment == 'static':
+      list.append('@{}.{}'.format(self.filename, index))
+      list.append('D=M')
+      list.append('@SP')
+      list.append('A=M')
+      list.append('M=D')
+      list.append('@SP')
+      list.append('D=M+1')
+      list.append('M=D')
     return list 
       
   # list of ASM -> write each to outfile
@@ -309,6 +341,53 @@ class CodeWriter:
 
     self.writeASM(list)
 
+  def writeInit(self):
+    self.writeASM(self.handleInit())
+
+  def handleInit(self):
+    list = []
+    return list
+
+  def writeLabel(self, label):
+    self.writeASM(self.handleLabel(label))
+
+  def handleLabel(self, label):
+    list = []
+    list.append('({}).format(label))
+    return list
+ 
+  def writeGoto(self, label):
+    self.writeASM(self.handleGoto(label))
+
+  def handleGoto(self, label):
+    list = []
+    list.append('@{}'.format(label))
+    list.append('0;JMP')
+    return list
+
+  def writeIf(self, label):
+    self.writeASM(self.handleIf(label))
+
+  def handleIf(self, label):
+    list = []
+    list.append('@SP')
+    list.append('A=M-1')
+    list.append('D=M')
+    list.append('@{}'.format(label))
+    list.append('D;JNE')
+    list.append('@SP')
+    list.append('D=M-1')
+    list.append('M=D')
+    return list
+
+  def writeCall(self, functionName, numArgs):
+    self.writeASM(self.handleCall(fuctionName, numArgs))
+
+  def writeReturn(self):
+    self.writeASM(self.handleReturn())
+
+  def writeFunction(self, functionName, numLocals):
+    self.writeASM(self.handleFunction(functionName, numLocals))
 
   def close(self):
     self.openedoutfile.close()

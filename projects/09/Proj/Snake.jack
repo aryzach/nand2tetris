@@ -1,0 +1,108 @@
+class Snake {
+	field List listSnake;	
+	field Square first;
+	field int direction;
+	field int size;
+
+	constructor Snake new(int Asize) {
+		let size = Asize;
+		let first = Square.new(size ,0,0);
+		let listSnake = List.new(first,null);
+		let direction = 0;
+		do draw();
+		return this;
+	}
+
+	method void dispose() {
+		do listSnake.dispose();
+		do first.dispose();
+		do Memory.deAlloc(this);
+		return;
+	}
+
+	method void draw() {
+		var Square currentSq;
+		var List restListSnake;
+		let currentSq = listSnake.getData();
+		let restListSnake = listSnake.getNext();
+		while (~(restListSnake = null)) {
+			do currentSq.draw();
+			let currentSq = restListSnake.getData();
+			let restListSnake = restListSnake.getNext();
+		}
+		return;
+	}
+
+	method void drawFirst() { return; }
+
+	method void eraseLast() {
+		var Square lastSq;
+		let lastSq = listSnake.removeFromEnd();
+		do lastSq.erase();
+		do lastSq.dispose();
+		return;
+	}
+
+	method void addToSnake(int x, int y) {
+		let first = Square.new(size, x, y);
+                let listSnake = List.new(first, listSnake);
+		return;
+	}
+
+	method void moveUp() {
+		if ((first.getY() - size) > 1) {
+			do addToSnake(first.getX(), first.getY() - size);
+			do eraseLast();
+			return;			 
+		}
+		return;
+	}
+
+	method void moveDown() {
+        	if ((first.getY() + size + size) < 254) {
+			do addToSnake(first.getX(), first.getY() + size);
+                        do eraseLast();
+                        return;		
+      }
+      return;
+   }
+
+	method void moveLeft() {
+     		if (first.getX() > 1) {
+      			do addToSnake(first.getX() - size, first.getY());
+                        do eraseLast();
+                        return;
+
+		}
+      	return;
+   	}
+
+  	method void moveRight() {
+      		if ((first.getX() + size) < 510) {
+      			do addToSnake(first.getX() + size, first.getY());
+                        do eraseLast();
+                        return;
+
+		}
+      	return;
+   	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
