@@ -448,7 +448,7 @@ class CompilationEngine:
 			print('error -compileLet = : {}'.format(self.t.currentToken))
 		self.writeNadv()
 		#maybe compileExpressionList() if I find out there can be 'let a,b = (2+1),(4+2)'
-		self.compileExpression()
+		self.compileExpression(';')
 		if self.t.currentToken != ';':
 			print('error -compileLet ; : {}'.format(self.t.currentToken))
 		self.writeNadv()
@@ -464,7 +464,7 @@ class CompilationEngine:
 		if self.t.currentToken != '(':
 			print('error -compileWhile leftparen: {}'.format(self.t.currentToken))
 		self.writeNadv()
-		self.compileExpression()
+		self.compileExpression(')')
 		if self.t.currentToken != ')':
 			print('error -compileWhile rightparen: {}'.format(self.t.currentToken))
 		self.writeNadv()
@@ -488,7 +488,7 @@ class CompilationEngine:
 		if self.t.currentToken == ';':
 			self.writeNadv()
 		else:
-			self.compileExpression()
+			self.compileExpression(';')
 			if self.t.currentToken != ';':
 				print('error -compileReturn ; : {}'.format(self.t.currentToken))
 			self.writeNadv()
@@ -503,7 +503,7 @@ class CompilationEngine:
 		if self.t.currentToken != '(':
 			print('error -compileIf leftparen: {}'.format(self.t.currentToken))
 		self.writeNadv()
-		self.compileExpression()
+		self.compileExpression(')')
 		if self.t.currentToken != ')':
 			print('error -compileIf rightparen: {}'.format(self.t.currentToken))
 		self.writeNadv()
@@ -530,11 +530,11 @@ class CompilationEngine:
 			print('error -compileElse rightcurly: {}'.format(self.t.currentToken))
 		self.writeNadv()
 
-	def compileExpression(self):
+	def compileExpression(self, ender):
 		self.writeMarkupBeg('expression')
 		# all of expression is gonna need some work
-		#while self.t.currentToken != ';':
-		self.compileTerm()
+		while self.t.currentToken != ender and self.t.currentToken != ',':
+			self.compileTerm()
 		self.writeMarkupEnd('expression')
 
 	def compileTerm(self):
@@ -547,14 +547,14 @@ class CompilationEngine:
 		while self.t.currentToken != ')':
 			if self.t.currentToken == ',':
 				self.writeNadv()
-			self.compileExpression()
+			self.compileExpression(')')
 		self.writeMarkupEnd('expressionList')
 
 	def compileIdentifier(self):
 		self.writeNadv()
 		if self.t.currentToken == '[':
 			self.writeNadv()
-			self.compileExpression()
+			self.compileExpression(']')
 			if self.t.currentToken != ']':
 				print('error -compileIdentifier rightbracket: {}'.format(self.t.currentToken))
 			self.writeNadv()
