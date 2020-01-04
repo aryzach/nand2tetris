@@ -238,18 +238,15 @@ class CompilationEngine:
 	def decide(self):
 		if self.t.currentToken == 'class':
 			self.compileClass()
-		elif self.t.currentToken == 'static':
+		elif self.t.currentToken == 'static' or self.t.currentToken == 'field':
 			self.compileClassVarDec()
-		elif self.t.currentToken == 'function':
+		#handle function, method, and constructor here
+		elif self.t.currentToken == 'function' or self.t.currentToken == 'method' or self.t.currentToken == 'constructor':
 			self.compileSubroutine()
 		elif self.t.currentToken == 'var':
 			self.compileVarDec()
-		elif self.t.currentToken == 'let':
-			self.compileLet()
-		elif self.t.currentToken == 'do':
-			self.compileDo()
-		elif self.t.currentToken == 'while':
-			self.compileWhile()
+		elif self.t.currentToken == 'let' or self.t.currentToken == 'do' or self.t.currentToken == 'while' or self.t.currentToken == 'if' or self.t.currentToken == 'return':
+			self.compileStatements()
 		else:
 			self.writeMarkupBeg('DONE!!!!!!')
 
@@ -275,8 +272,8 @@ class CompilationEngine:
 
 	def compileClassVarDec(self):
 		self.writeMarkupBeg('classVarDec')
-		if self.t.currentToken != 'static':
-			print('error -compileClassVarDec static: {}'.format(self.t.currentToken))
+		if self.t.currentToken != 'static' and self.t.currentToken != 'field':
+			print('error -compileClassVarDec static OR field: {}'.format(self.t.currentToken))
 		self.writeNadv()
 		if self.t.tokenType() != KEYWORD:
 			print('error -compileClassVarDec KEYWORD: {}'.format(self.t.currentToken))
@@ -284,18 +281,26 @@ class CompilationEngine:
 		if self.t.tokenType() != IDENTIFIER:
                 	print('error -compileClassVarDec IDENTIFIER: {}'.format(self.t.currentToken))
 		self.writeNadv()
+		while self.t.currentToken != ';':
+			if self.t.currentToken != ',':
+				print('error -compileVarDec , : {}'.format(self.t.currentToken))
+			self.writeNadv()
+			if self.t.tokenType() != IDENTIFIER:
+				print('error -compileVarDec IDENTIFIER: {}'.format(self.t.currentToken))
+			self.writeNadv()
 		if self.t.currentToken != ';':
 			print('error -compileClassVarDec ; : {}'.format(self.t.currentToken))
 		self.writeNadv()
-		if self.t.currentToken == 'static':
-			self.decide()
-		else:
-			self.writeMarkupEnd('classVarDec')
-			self.decide()
+		#if self.t.currentToken == 'static' or self.t.currentToken == 'field':
+		#	self.decide()
+		#else:
+		self.writeMarkupEnd('classVarDec')
+		self.decide()
+
 
 	def compileSubroutine(self):
 		self.writeMarkupBeg('subroutineDec')
-		if self.t.currentToken != 'function':
+		if self.t.currentToken != 'function' and self.t.currentToken != 'method' and self.t.currentToken != 'constructor':
 			print('error -compileSubroutineDec function: {}'.format(self.t.currentToken))
 		self.writeNadv()
 		if self.t.tokenType() != KEYWORD:
@@ -316,7 +321,9 @@ class CompilationEngine:
 	# possible problem here (not sure when to advance)
 	#	if self.t.hasMoreTokens():
 	#		self.t.advance()
-		self.decide()
+		# not sure if I should be dealing with } here or in class or something else
+		if self.t.currentToken != '}':
+			self.decide()
 
 	def compileSubroutineBody(self):
 		self.writeMarkupBeg('subroutineBody')
@@ -335,8 +342,7 @@ class CompilationEngine:
 		self.writeMarkupBeg('parameterList')
 		while self.t.currentToken != ')':
 			#check parameters
-			print('ok')
-			self.t.advance()
+			self.writeNadv()
 		self.writeMarkupEnd('parameterList')
 
 	def compileVarDec(self):
@@ -364,7 +370,19 @@ class CompilationEngine:
 			self.decide()
 
 	def compileStatements(self):
-		
+		self.writeMarkupBeg('statements')
+		while self.t.currentToken != '}':
+			if self.t.currentToken == 'let':
+				self.compileLet()
+			elif self.t.currentToken == 'do': 
+				self.compileDo()
+			elif self.t.currentToken == 'while':
+				self.compileWhile()
+			elif self.t.currentToken == 'if':
+				self.compileIf()
+			elif self.t.currentToken == 'return':
+				self.compileReturn()
+		self.writeMarkupEnd('statements')
 
 	def compileDo(self):
 		self.writeMarkupBeg('doStatement')
@@ -392,7 +410,7 @@ class CompilationEngine:
 			if self.t.currentToken == '(':
 				#method call of current class
 				self.writeNadv()
-				self.compileExpressionList
+				self.compileExpressionList()
 				if self.t.currentToken != ')':
 					print('error -compileDo rightparen : {}'.format(self.t.currentToken))
 				self.writeNadv()
@@ -412,8 +430,11 @@ class CompilationEngine:
 				print('error -compileDo leftparen or . : {}'.format(self.t.currentToken))
 		else:
 			print('error -compileDo not function or method: {}'.format(self.t.currentToken))
+		if self.t.currentToken != ';':
+			print('error -compileDo ; : {}'.format(self.t.currentToken))
+		self.writeNadv()
 		self.writeMarkupEnd('doStatement')
-		self.decide()
+		#self.decide()
 
 	def compileLet(self):
 		self.writeMarkupBeg('letStatement')
@@ -422,18 +443,20 @@ class CompilationEngine:
 		self.writeNadv()
 		if self.t.tokenType() != IDENTIFIER:
 			print('error -compileLet IDENTIFIER: {}'.format(self.t.currentToken))
-		self.writeNadv()
+		self.compileIdentifier()
 		if self.t.currentToken != '=':
 			print('error -compileLet = : {}'.format(self.t.currentToken))
 		self.writeNadv()
+		#maybe compileExpressionList() if I find out there can be 'let a,b = (2+1),(4+2)'
 		self.compileExpression()
 		if self.t.currentToken != ';':
 			print('error -compileLet ; : {}'.format(self.t.currentToken))
 		self.writeNadv()
 		self.writeMarkupEnd('letStatement')
-		self.decide()
+		#self.decide()
 
 	def compileWhile(self):
+		#include brackets, and either decide() or compileStatements()
 		self.writeMarkupBeg('whileStatement')
 		if self.t.currentToken != 'while':
 			print('error -compileWhile while: {}'.format(self.t.currentToken))
@@ -445,15 +468,36 @@ class CompilationEngine:
 		if self.t.currentToken != ')':
 			print('error -compileWhile rightparen: {}'.format(self.t.currentToken))
 		self.writeNadv()
+		if self.t.currentToken != '{':
+			print('error -compileWhile leftcurly: {}'.format(self.t.currentToken))
+		self.writeNadv()
+		# decide or comp statements
+		self.compileStatements()
+		if self.t.currentToken != '}':
+			print('error -compileWhile rightcurly: {}'.format(self.t.currentToken))
+		self.writeNadv()
 		self.writeMarkupEnd('whileStatement')
-		self.decide()
+		#self.decide()
 
 	def compileReturn(self):
-		return 0
+		self.writeMarkupBeg('returnStatement')
+		# probably will need to handle expressions
+		if self.t.currentToken != 'return':
+			print('error -compileReturn return: {}'.format(self.t.currentToken))
+		self.writeNadv()
+		if self.t.currentToken == ';':
+			self.writeNadv()
+		else:
+			self.compileExpression()
+			if self.t.currentToken != ';':
+				print('error -compileReturn ; : {}'.format(self.t.currentToken))
+			self.writeNadv()
+		self.writeMarkupEnd('returnStatement')
 
 	def compileIf(self):
+		# include else and brackets, and either decide() or compileStatements()
 		self.writeMarkupBeg('ifStatement')		
-		if self.t.currentToken != 'while':
+		if self.t.currentToken != 'if':
 			print('error -compileIf if : {}'.format(self.t.currentToken))
 		self.writeNadv()
 		if self.t.currentToken != '(':
@@ -463,20 +507,57 @@ class CompilationEngine:
 		if self.t.currentToken != ')':
 			print('error -compileIf rightparen: {}'.format(self.t.currentToken))
 		self.writeNadv()
+		if self.t.currentToken != '{':   
+			print('error -compileIf leftcurly: {}'.format(self.t.currentToken))
+		self.writeNadv()
+                # decide or comp statements
+		self.compileStatements()
+		if self.t.currentToken != '}':							
+			print('error -compileIf rightcurly: {}'.format(self.t.currentToken))	
+		self.writeNadv()
+		if self.t.currentToken == 'else':
+			self.compileElse()
 		self.writeMarkupEnd('ifStatement')   
-		self.decide()
+		#self.decide()
 
-	def compileExpression(self):
+	def compileElse(self):
+		self.writeNadv()
+		if self.t.currentToken != '{':
+			print('error -compileElse leftcurly: {}'.format(self.t.currentToken))
+		self.writeNadv()
+		self.compileStatements()
+		if self.t.currentToken != '}':
+			print('error -compileElse rightcurly: {}'.format(self.t.currentToken))
 		self.writeNadv()
 
+	def compileExpression(self):
+		self.writeMarkupBeg('expression')
+		# all of expression is gonna need some work
+		#while self.t.currentToken != ';':
+		self.compileTerm()
+		self.writeMarkupEnd('expression')
+
 	def compileTerm(self):
-		return 0
+		self.writeMarkupBeg('term')
+		self.writeNadv()
+		self.writeMarkupEnd('term')
 
 	def compileExpressionList(self):
 		self.writeMarkupBeg('expressionList')
 		while self.t.currentToken != ')':
-			self.writeNadv()
+			if self.t.currentToken == ',':
+				self.writeNadv()
+			self.compileExpression()
 		self.writeMarkupEnd('expressionList')
+
+	def compileIdentifier(self):
+		self.writeNadv()
+		if self.t.currentToken == '[':
+			self.writeNadv()
+			self.compileExpression()
+			if self.t.currentToken != ']':
+				print('error -compileIdentifier rightbracket: {}'.format(self.t.currentToken))
+			self.writeNadv()
 
 	def writeMarkupBeg(self, text):
 		self.outfile.write('<{}>'.format(text))
