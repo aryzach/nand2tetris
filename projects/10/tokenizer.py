@@ -230,8 +230,10 @@ class CompilationEngine:
 		self.space = 0
 		self.outfile = open(outfile, 'w') 
 		self.t = tokenizer
+		self.lastToken = None
 
 	def writeMarkupToken(self):
+		self.lastToken = self.t.currentToken
 		self.outfile.write(self.t.createMarkupToken())
 		self.outfile.write('\n')
 
@@ -534,13 +536,55 @@ class CompilationEngine:
 		self.writeMarkupBeg('expression')
 		# all of expression is gonna need some work
 		while self.t.currentToken != ender and self.t.currentToken != ',':
-			self.compileTerm()
+			if self.lastToken != '(' and self.isBooleanOperator():
+				self.writeNadv()
+			else:
+				self.compileTerm()
 		self.writeMarkupEnd('expression')
 
 	def compileTerm(self):
 		self.writeMarkupBeg('term')
-		self.writeNadv()
+		if self.t.currentToken == '-' or self.t.currentToken == '~':
+			self.writeNadv()
+			self.compileTerm()
+		elif self.t.currentToken == '(':
+			self.writeNadv()
+			self.compileExpression(')')
+			# ')'
+			self.writeNadv()
+		else:
+			self.writeNadv()
+			if self.t.currentToken == '.' or self.t.currentToken == '(':
+				self.compileRestFunctionOrMethodCall()
+			elif self.t.currentToken == '[':
+				self.compileArrayElement()
 		self.writeMarkupEnd('term')
+
+	def isBooleanOperator(self):
+		operators = ['*', '+', '-', '/', '|', '&', '<','>','=']
+		for operator in operators:
+			if self.t.currentToken == operator:
+				return True
+		return False
+
+	def compileArrayElement(self):
+		# '['
+		self.writeNadv()
+		self.compileExpression(']')
+		# ']'
+		self.writeNadv()
+
+	def compileRestFunctionOrMethodCall(self):
+		if self.t.currentToken == '.':
+			# '.'
+			self.writeNadv()
+			# function or method name
+			self.writeNadv()
+		# '('
+		self.writeNadv()
+		self.compileExpressionList()
+		# ')'
+		self.writeNadv()
 
 	def compileExpressionList(self):
 		self.writeMarkupBeg('expressionList')
