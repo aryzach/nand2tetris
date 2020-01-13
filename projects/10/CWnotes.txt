@@ -1,0 +1,152 @@
+when compiling a class:
+	class Point:
+		field int x, y; #only updates symbol table at class level
+		static int PointCount #only updates symbol table at class level
+	construct Point.new(int ax, int ay){  #only updates symbol table at constructor level but also:
+	push 2 #two 16-bit words required (x and y ??) (yes, when constructing a point, we want code to run so we have access to 'this' ie the x and y fields and set them for this instance of Point
+	call Memory.alloc 1 
+	pop pointer 0 #anchors 'this' at base address
+
+	let x = ax; let y = ay;
+	push argument 0
+	pop this 0 (pointer 0 holds mem address of obj instance in the heap, this 0 accesses the location where that mem addr is)
+	push argument 1
+	pop this 1
+
+	let pointCount = pointCount + 1
+	push static 0 
+	push 1
+	add
+	pop static 0
+
+	return this;
+	(since base addr of this is the base addr of the present object all to do is:)
+	push pointer 0 (not 'push this' because that would push ax (field x) which we don't want)
+	return
+
+when creating new instance of point (caller):
+	var Point p1; # I think does nothing except update symbol table at class(?) level
+
+	let p1 = Point.new(2,3);
+	push 2 
+	push 3
+	call Point.new
+	pop p1
+
+manipulating objects (2 parts):
+	caller (let x = p1.getx())
+		push p1 # pushing base address
+		call getx()
+		(p1.dist(p2))
+		push p1
+		push p2
+		call dist		
+
+
+	callee (class Point: ..... method int getx())
+		method int dist(Point other){ and var int dx, dy; generate no code but create a symbol table at the method level (this, Point, arg, 0) (other, Point, arg, 1) (dx, int, local, 0) (dy, int local 1)
+		then:
+		push arg 0
+		pop pointer 0 (THIS = arg 0)	
+		so in 'let dx = x - other.getx()'
+		push this 0
+		push push arg 1
+		call Point.getx 1 (one argument)
+		sub
+		pop local 0 (dx)
+		then:
+		return Math.sqrt((dx*dx)+(dy*dy))
+		push local 0
+		push local 0
+		call Math.mult 2
+		push local 1
+		push local 1
+		call Math.mult 2
+		add
+		call Math.sqrt 1
+		return
+
+	but how about methods that return void?
+		method void print() #from something like do p1.print()
+		# create method level symbol table (this, Point, arg, 0)
+		push arg 0 
+		pop pointer 0
+		#compile omitted 'print' code
+		# becasue methods must return a value even though 'do p1.print doesn't assign the value to anything
+		push constant 0 (dummy value)
+		return
+
+		(so the caller code looks like this)
+		# do p1.print()
+		push p1
+		call Point.print
+		pop temp 0 (just to get rid of the 'constant 0' return value?)
+
+
+Array construction
+	var Array arr
+	only affects symbol table
+	local 0
+
+	let arr = Array.new(5)
+	handled exactly like object contruction 
+	don't have to do anything else besides implementing object construction
+
+Array manipulation
+	arr[2] = 17
+	push arr # base address
+	push 2
+	add
+	pop pointer 1
+	push 17
+	pop THAT 0
+	# we are dealing w/ arrays here differently than objects. With objects, we wouldn't 'add', we would just use 'pop THAT 2' instead. For arrays, we always use zero with 'THAT 0'
+
+	but in case of a[i] = b[j]
+	push a
+	push i # but instead of i or j, generate VM code for computing a pushing value of expression that could be at i or j instead
+	add
+	push b
+	push j
+	add
+	pop pointer 1
+	push that 0
+	pop temp 0
+	pop pointer 1
+	push temp 0
+	pop that 0 
+	
+
+Note: This - objects, That - arrays
+so to set this, pop pointer 0, to set that, pop pointer 1 (from VM imp I already did, doing it will align THAT 0 or THIS 0 with the value stored in the pointer
+
+Note: when compiling subroutines, set THIS (or pointer 0 idk) to arg 0
+
+when compiling constructors, allocate memory, then set THIS to objects base address, and VM code must return the base address to caller. Because in the jack language a constructor has to 'return this', I don't think we have to mess with in in VM code, the jack code will demand it, and it'll be taken care of when compiling 'return this'
+
+when compiling functions or methods that return void, return constant 0. But when compiling a CALL to a function or method, must then pop and ignore the returned value
+
+when compiling a CALL to function or method, push args onto stack, then call Foo.name (# or args)
+
+compiling constants: null -> constant 0, false -> constant 0, true -> constant -1 (push 1, neg)
+
+OS: * - Math.multiply(), / - Math.divide(), string constants - String.new(length), string assignments - x = 'cool' handled by series of calls String.appendChar(c), object construction - Memory.alloc(size) (I think size is # of fields ?), object recycling - Memory.deAlloc(object)
+
+
+Usage:
+'JackCompiler (.jack file or directory of files)'
+generate one .vm file for every .jack file. Compiler uses SymbolTable, CompilationEngine, and VMwriter to write VM code to .vm file
+
+CompEngine:
+-get input from Tokenizer, organized as 'compileXXX' routines where XXX is a syntactic element of jack language (there are 15 of these syntactic elements in jack ex. while, let)
+- call compileXXX only if current syntactic element is XXX
+- if XXX is expression, VM code should compute value of expression and leave it on top of stack
+
+Proj 11 video:
+Symbol table: output identifiers category (var/local, arg, static, field, class, or subroutine)
+if not subroutine, need to include the number of running index of that type
+and output if it's being defined or used
+So implement symbol table and include it with the syntax analyzer and self check to see if it's doing it correctly (test on proj 10 jack code)
+
+When we have a 'do' statement, need VM code to 'pop temp 0' because we don't need the return value produced anywhere
+
