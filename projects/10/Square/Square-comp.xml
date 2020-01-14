@@ -1,35 +1,65 @@
 <class>
 <keyword> class </keyword>
 <identifier> Square </identifier>
+category: class
+defined or used: defined
 <symbol> { </symbol>
 <classVarDec>
 <keyword> field </keyword>
 <keyword> int </keyword>
 <identifier> x </identifier>
+category: field
+defined or used: defined
+its a variable 
+index: 0
 <symbol> , </symbol>
 <identifier> y </identifier>
+category: field
+defined or used: defined
+its a variable 
+index: 1
 <symbol> ; </symbol>
 </classVarDec>
 <classVarDec>
 <keyword> field </keyword>
 <keyword> int </keyword>
 <identifier> size </identifier>
+category: field
+defined or used: defined
+its a variable 
+index: 2
 <symbol> ; </symbol>
 </classVarDec>
 <subroutineDec>
 <keyword> constructor </keyword>
 <identifier> Square </identifier>
+category: class
+defined or used: used
 <identifier> new </identifier>
+category: subroutine
+defined or used: defined
 <symbol> ( </symbol>
 <parameterList>
 <keyword> int </keyword>
 <identifier> Ax </identifier>
+category: argument
+defined or used: defined
+its a variable 
+index: 0
 <symbol> , </symbol>
 <keyword> int </keyword>
 <identifier> Ay </identifier>
+category: argument
+defined or used: defined
+its a variable 
+index: 1
 <symbol> , </symbol>
 <keyword> int </keyword>
 <identifier> Asize </identifier>
+category: argument
+defined or used: defined
+its a variable 
+index: 2
 </parameterList>
 <symbol> ) </symbol>
 <subroutineBody>
@@ -38,10 +68,18 @@
 <letStatement>
 <keyword> let </keyword>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 <symbol> = </symbol>
 <expression>
 <term>
 <identifier> Ax </identifier>
+category: argument
+defined or used: used
+its a variable 
+index: 0
 </term>
 </expression>
 <symbol> ; </symbol>
@@ -49,10 +87,18 @@
 <letStatement>
 <keyword> let </keyword>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 <symbol> = </symbol>
 <expression>
 <term>
 <identifier> Ay </identifier>
+category: argument
+defined or used: used
+its a variable 
+index: 1
 </term>
 </expression>
 <symbol> ; </symbol>
@@ -60,10 +106,18 @@
 <letStatement>
 <keyword> let </keyword>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 <symbol> = </symbol>
 <expression>
 <term>
 <identifier> Asize </identifier>
+category: argument
+defined or used: used
+its a variable 
+index: 2
 </term>
 </expression>
 <symbol> ; </symbol>
@@ -71,6 +125,8 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> draw </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -94,6 +150,8 @@
 <keyword> method </keyword>
 <keyword> void </keyword>
 <identifier> dispose </identifier>
+category: subroutine
+defined or used: defined
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -104,8 +162,12 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> Memory </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> deAlloc </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 <expression>
@@ -129,6 +191,8 @@
 <keyword> method </keyword>
 <keyword> void </keyword>
 <identifier> draw </identifier>
+category: subroutine
+defined or used: defined
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -139,8 +203,12 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> Screen </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> setColor </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 <expression>
@@ -155,39 +223,67 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> Screen </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> drawRectangle </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> + </symbol>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 <symbol> + </symbol>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 </expression>
 </expressionList>
@@ -206,6 +302,8 @@
 <keyword> method </keyword>
 <keyword> void </keyword>
 <identifier> erase </identifier>
+category: subroutine
+defined or used: defined
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -216,8 +314,12 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> Screen </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> setColor </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 <expression>
@@ -232,39 +334,67 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> Screen </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> drawRectangle </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> + </symbol>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 <symbol> + </symbol>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 </expression>
 </expressionList>
@@ -283,6 +413,8 @@
 <keyword> method </keyword>
 <keyword> void </keyword>
 <identifier> incSize </identifier>
+category: subroutine
+defined or used: defined
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -302,10 +434,18 @@
 <expression>
 <term>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 <symbol> + </symbol>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -326,10 +466,18 @@
 <expression>
 <term>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> + </symbol>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -348,6 +496,8 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> erase </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -357,10 +507,18 @@
 <letStatement>
 <keyword> let </keyword>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 <symbol> = </symbol>
 <expression>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 <symbol> + </symbol>
 <term>
@@ -372,6 +530,8 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> draw </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -393,6 +553,8 @@
 <keyword> method </keyword>
 <keyword> void </keyword>
 <identifier> decSize </identifier>
+category: subroutine
+defined or used: defined
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -406,6 +568,10 @@
 <expression>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 <symbol> &gt; </symbol>
 <term>
@@ -418,6 +584,8 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> erase </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -427,10 +595,18 @@
 <letStatement>
 <keyword> let </keyword>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 <symbol> = </symbol>
 <expression>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 <symbol> - </symbol>
 <term>
@@ -442,6 +618,8 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> draw </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -463,6 +641,8 @@
 <keyword> method </keyword>
 <keyword> void </keyword>
 <identifier> moveUp </identifier>
+category: subroutine
+defined or used: defined
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -476,6 +656,10 @@
 <expression>
 <term>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 <symbol> &gt; </symbol>
 <term>
@@ -488,8 +672,12 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> Screen </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> setColor </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 <expression>
@@ -504,13 +692,21 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> Screen </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> drawRectangle </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 </term>
 </expression>
 <symbol> , </symbol>
@@ -520,10 +716,18 @@
 <expression>
 <term>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 <symbol> + </symbol>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -537,20 +741,36 @@
 <expression>
 <term>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> + </symbol>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 <symbol> + </symbol>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 </expression>
 </expressionList>
@@ -560,10 +780,18 @@
 <letStatement>
 <keyword> let </keyword>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 <symbol> = </symbol>
 <expression>
 <term>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 <symbol> - </symbol>
 <term>
@@ -575,8 +803,12 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> Screen </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> setColor </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 <expression>
@@ -591,35 +823,59 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> Screen </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> drawRectangle </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> + </symbol>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 <symbol> + </symbol>
 <term>
@@ -645,6 +901,8 @@
 <keyword> method </keyword>
 <keyword> void </keyword>
 <identifier> moveDown </identifier>
+category: subroutine
+defined or used: defined
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -661,10 +919,18 @@
 <expression>
 <term>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 <symbol> + </symbol>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -680,8 +946,12 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> Screen </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> setColor </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 <expression>
@@ -696,35 +966,59 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> Screen </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> drawRectangle </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> + </symbol>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 <symbol> + </symbol>
 <term>
@@ -738,10 +1032,18 @@
 <letStatement>
 <keyword> let </keyword>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 <symbol> = </symbol>
 <expression>
 <term>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 <symbol> + </symbol>
 <term>
@@ -753,8 +1055,12 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> Screen </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> setColor </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 <expression>
@@ -769,13 +1075,21 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> Screen </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> drawRectangle </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 </term>
 </expression>
 <symbol> , </symbol>
@@ -785,10 +1099,18 @@
 <expression>
 <term>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 <symbol> + </symbol>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -802,20 +1124,36 @@
 <expression>
 <term>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> + </symbol>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 <symbol> + </symbol>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 </expression>
 </expressionList>
@@ -837,6 +1175,8 @@
 <keyword> method </keyword>
 <keyword> void </keyword>
 <identifier> moveLeft </identifier>
+category: subroutine
+defined or used: defined
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -850,6 +1190,10 @@
 <expression>
 <term>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> &gt; </symbol>
 <term>
@@ -862,8 +1206,12 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> Screen </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> setColor </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 <expression>
@@ -878,8 +1226,12 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> Screen </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> drawRectangle </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 <expression>
@@ -888,10 +1240,18 @@
 <expression>
 <term>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> + </symbol>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -905,26 +1265,46 @@
 <expression>
 <term>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> + </symbol>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 <symbol> + </symbol>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 </expression>
 </expressionList>
@@ -934,10 +1314,18 @@
 <letStatement>
 <keyword> let </keyword>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 <symbol> = </symbol>
 <expression>
 <term>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> - </symbol>
 <term>
@@ -949,8 +1337,12 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> Screen </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> setColor </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 <expression>
@@ -965,25 +1357,41 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> Screen </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> drawRectangle </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> + </symbol>
 <term>
@@ -994,10 +1402,18 @@
 <expression>
 <term>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 <symbol> + </symbol>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 </expression>
 </expressionList>
@@ -1019,6 +1435,8 @@
 <keyword> method </keyword>
 <keyword> void </keyword>
 <identifier> moveRight </identifier>
+category: subroutine
+defined or used: defined
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -1035,10 +1453,18 @@
 <expression>
 <term>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> + </symbol>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -1054,8 +1480,12 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> Screen </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> setColor </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 <expression>
@@ -1070,25 +1500,41 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> Screen </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> drawRectangle </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> + </symbol>
 <term>
@@ -1099,10 +1545,18 @@
 <expression>
 <term>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 <symbol> + </symbol>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 </expression>
 </expressionList>
@@ -1112,10 +1566,18 @@
 <letStatement>
 <keyword> let </keyword>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 <symbol> = </symbol>
 <expression>
 <term>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> + </symbol>
 <term>
@@ -1127,8 +1589,12 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> Screen </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> setColor </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 <expression>
@@ -1143,8 +1609,12 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> Screen </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> drawRectangle </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 <expression>
@@ -1153,10 +1623,18 @@
 <expression>
 <term>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> + </symbol>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -1170,26 +1648,46 @@
 <expression>
 <term>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
 <identifier> x </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> + </symbol>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
 <identifier> y </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 <symbol> + </symbol>
 <term>
 <identifier> size </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 2
 </term>
 </expression>
 </expressionList>

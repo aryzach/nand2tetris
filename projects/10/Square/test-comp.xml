@@ -2,6 +2,10 @@
 <letStatement>
 <keyword> let </keyword>
 <identifier> x </identifier>
+category: None
+defined or used: used
+its a variable 
+index: None
 <symbol> = </symbol>
 <expression>
 <term>

@@ -1,17 +1,25 @@
 <class>
 <keyword> class </keyword>
 <identifier> Main </identifier>
+category: class
+defined or used: defined
 <symbol> { </symbol>
 <classVarDec>
 <keyword> static </keyword>
 <keyword> boolean </keyword>
 <identifier> test </identifier>
+category: static
+defined or used: defined
+its a variable 
+index: 0
 <symbol> ; </symbol>
 </classVarDec>
 <subroutineDec>
 <keyword> function </keyword>
 <keyword> void </keyword>
 <identifier> main </identifier>
+category: subroutine
+defined or used: defined
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -21,19 +29,33 @@
 <varDec>
 <keyword> var </keyword>
 <identifier> SquareGame </identifier>
+category: class
+defined or used: used
 <identifier> game </identifier>
+category: var
+defined or used: defined
+its a variable 
+index: 0
 <symbol> ; </symbol>
 </varDec>
 <statements>
 <letStatement>
 <keyword> let </keyword>
 <identifier> game </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 0
 <symbol> = </symbol>
 <expression>
 <term>
 <identifier> SquareGame </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> new </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -45,8 +67,14 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> game </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 0
 <symbol> . </symbol>
 <identifier> run </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -56,8 +84,14 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> game </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 0
 <symbol> . </symbol>
 <identifier> dispose </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -76,6 +110,8 @@
 <keyword> function </keyword>
 <keyword> void </keyword>
 <identifier> test </identifier>
+category: subroutine
+defined or used: defined
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -86,20 +122,40 @@
 <keyword> var </keyword>
 <keyword> int </keyword>
 <identifier> i </identifier>
+category: var
+defined or used: defined
+its a variable 
+index: 0
 <symbol> , </symbol>
 <identifier> j </identifier>
+category: var
+defined or used: defined
+its a variable 
+index: 1
 <symbol> ; </symbol>
 </varDec>
 <varDec>
 <keyword> var </keyword>
 <identifier> String </identifier>
+category: class
+defined or used: used
 <identifier> s </identifier>
+category: var
+defined or used: defined
+its a variable 
+index: 2
 <symbol> ; </symbol>
 </varDec>
 <varDec>
 <keyword> var </keyword>
 <identifier> Array </identifier>
+category: class
+defined or used: used
 <identifier> a </identifier>
+category: var
+defined or used: defined
+its a variable 
+index: 3
 <symbol> ; </symbol>
 </varDec>
 <statements>
@@ -117,6 +173,10 @@
 <letStatement>
 <keyword> let </keyword>
 <identifier> s </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 2
 <symbol> = </symbol>
 <expression>
 <term>
@@ -128,6 +188,10 @@
 <letStatement>
 <keyword> let </keyword>
 <identifier> s </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 2
 <symbol> = </symbol>
 <expression>
 <term>
@@ -139,6 +203,10 @@
 <letStatement>
 <keyword> let </keyword>
 <identifier> a </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 3
 <symbol> [ </symbol>
 <expression>
 <term>
@@ -150,6 +218,10 @@
 <expression>
 <term>
 <identifier> a </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 3
 <symbol> [ </symbol>
 <expression>
 <term>
@@ -169,10 +241,18 @@
 <letStatement>
 <keyword> let </keyword>
 <identifier> i </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 0
 <symbol> = </symbol>
 <expression>
 <term>
 <identifier> i </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> * </symbol>
 <term>
@@ -182,6 +262,10 @@
 <symbol> - </symbol>
 <term>
 <identifier> j </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 1
 </term>
 </term>
 </expression>
@@ -193,10 +277,18 @@
 <letStatement>
 <keyword> let </keyword>
 <identifier> j </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 1
 <symbol> = </symbol>
 <expression>
 <term>
 <identifier> j </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 1
 </term>
 <symbol> / </symbol>
 <term>
@@ -217,14 +309,26 @@
 <letStatement>
 <keyword> let </keyword>
 <identifier> i </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 0
 <symbol> = </symbol>
 <expression>
 <term>
 <identifier> i </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> | </symbol>
 <term>
 <identifier> j </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 1
 </term>
 </expression>
 <symbol> ; </symbol>

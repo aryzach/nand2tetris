@@ -1,23 +1,39 @@
 <class>
 <keyword> class </keyword>
 <identifier> SquareGame </identifier>
+category: class
+defined or used: defined
 <symbol> { </symbol>
 <classVarDec>
 <keyword> field </keyword>
 <identifier> Square </identifier>
+category: class
+defined or used: used
 <identifier> square </identifier>
+category: field
+defined or used: defined
+its a variable 
+index: 0
 <symbol> ; </symbol>
 </classVarDec>
 <classVarDec>
 <keyword> field </keyword>
 <keyword> int </keyword>
 <identifier> direction </identifier>
+category: field
+defined or used: defined
+its a variable 
+index: 1
 <symbol> ; </symbol>
 </classVarDec>
 <subroutineDec>
 <keyword> constructor </keyword>
 <identifier> SquareGame </identifier>
+category: class
+defined or used: used
 <identifier> new </identifier>
+category: subroutine
+defined or used: defined
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -28,12 +44,20 @@
 <letStatement>
 <keyword> let </keyword>
 <identifier> square </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 <symbol> = </symbol>
 <expression>
 <term>
 <identifier> Square </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> new </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 <expression>
@@ -62,6 +86,10 @@
 <letStatement>
 <keyword> let </keyword>
 <identifier> direction </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 <symbol> = </symbol>
 <expression>
 <term>
@@ -87,6 +115,8 @@
 <keyword> method </keyword>
 <keyword> void </keyword>
 <identifier> dispose </identifier>
+category: subroutine
+defined or used: defined
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -97,8 +127,14 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> square </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 <symbol> . </symbol>
 <identifier> dispose </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -108,8 +144,12 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> Memory </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> deAlloc </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 <expression>
@@ -133,6 +173,8 @@
 <keyword> method </keyword>
 <keyword> void </keyword>
 <identifier> moveSquare </identifier>
+category: subroutine
+defined or used: defined
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -146,6 +188,10 @@
 <expression>
 <term>
 <identifier> direction </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 <symbol> = </symbol>
 <term>
@@ -158,8 +204,14 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> square </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 <symbol> . </symbol>
 <identifier> moveUp </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -175,6 +227,10 @@
 <expression>
 <term>
 <identifier> direction </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 <symbol> = </symbol>
 <term>
@@ -187,8 +243,14 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> square </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 <symbol> . </symbol>
 <identifier> moveDown </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -204,6 +266,10 @@
 <expression>
 <term>
 <identifier> direction </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 <symbol> = </symbol>
 <term>
@@ -216,8 +282,14 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> square </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 <symbol> . </symbol>
 <identifier> moveLeft </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -233,6 +305,10 @@
 <expression>
 <term>
 <identifier> direction </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 </term>
 <symbol> = </symbol>
 <term>
@@ -245,8 +321,14 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> square </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 <symbol> . </symbol>
 <identifier> moveRight </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -259,8 +341,12 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> Sys </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> wait </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 <expression>
@@ -284,6 +370,8 @@
 <keyword> method </keyword>
 <keyword> void </keyword>
 <identifier> run </identifier>
+category: subroutine
+defined or used: defined
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -294,18 +382,30 @@
 <keyword> var </keyword>
 <keyword> char </keyword>
 <identifier> key </identifier>
+category: var
+defined or used: defined
+its a variable 
+index: 0
 <symbol> ; </symbol>
 </varDec>
 <varDec>
 <keyword> var </keyword>
 <keyword> boolean </keyword>
 <identifier> exit </identifier>
+category: var
+defined or used: defined
+its a variable 
+index: 1
 <symbol> ; </symbol>
 </varDec>
 <statements>
 <letStatement>
 <keyword> let </keyword>
 <identifier> exit </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 1
 <symbol> = </symbol>
 <expression>
 <term>
@@ -322,6 +422,10 @@
 <symbol> ~ </symbol>
 <term>
 <identifier> exit </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 1
 </term>
 </term>
 </expression>
@@ -334,6 +438,10 @@
 <expression>
 <term>
 <identifier> key </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> = </symbol>
 <term>
@@ -346,12 +454,20 @@
 <letStatement>
 <keyword> let </keyword>
 <identifier> key </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 0
 <symbol> = </symbol>
 <expression>
 <term>
 <identifier> Keyboard </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> keyPressed </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -363,6 +479,8 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> moveSquare </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -378,6 +496,10 @@
 <expression>
 <term>
 <identifier> key </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> = </symbol>
 <term>
@@ -390,6 +512,10 @@
 <letStatement>
 <keyword> let </keyword>
 <identifier> exit </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 1
 <symbol> = </symbol>
 <expression>
 <term>
@@ -407,6 +533,10 @@
 <expression>
 <term>
 <identifier> key </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> = </symbol>
 <term>
@@ -419,8 +549,14 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> square </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 <symbol> . </symbol>
 <identifier> decSize </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -436,6 +572,10 @@
 <expression>
 <term>
 <identifier> key </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> = </symbol>
 <term>
@@ -448,8 +588,14 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> square </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 0
 <symbol> . </symbol>
 <identifier> incSize </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -465,6 +611,10 @@
 <expression>
 <term>
 <identifier> key </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> = </symbol>
 <term>
@@ -477,6 +627,10 @@
 <letStatement>
 <keyword> let </keyword>
 <identifier> direction </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 <symbol> = </symbol>
 <expression>
 <term>
@@ -494,6 +648,10 @@
 <expression>
 <term>
 <identifier> key </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> = </symbol>
 <term>
@@ -506,6 +664,10 @@
 <letStatement>
 <keyword> let </keyword>
 <identifier> direction </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 <symbol> = </symbol>
 <expression>
 <term>
@@ -523,6 +685,10 @@
 <expression>
 <term>
 <identifier> key </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> = </symbol>
 <term>
@@ -535,6 +701,10 @@
 <letStatement>
 <keyword> let </keyword>
 <identifier> direction </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 <symbol> = </symbol>
 <expression>
 <term>
@@ -552,6 +722,10 @@
 <expression>
 <term>
 <identifier> key </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> = </symbol>
 <term>
@@ -564,6 +738,10 @@
 <letStatement>
 <keyword> let </keyword>
 <identifier> direction </identifier>
+category: field
+defined or used: used
+its a variable 
+index: 1
 <symbol> = </symbol>
 <expression>
 <term>
@@ -586,6 +764,10 @@
 <expression>
 <term>
 <identifier> key </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 0
 </term>
 <symbol> = </symbol>
 <term>
@@ -602,12 +784,20 @@
 <letStatement>
 <keyword> let </keyword>
 <identifier> key </identifier>
+category: var
+defined or used: used
+its a variable 
+index: 0
 <symbol> = </symbol>
 <expression>
 <term>
 <identifier> Keyboard </identifier>
+category: class
+defined or used: used
 <symbol> . </symbol>
 <identifier> keyPressed </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -619,6 +809,8 @@
 <doStatement>
 <keyword> do </keyword>
 <identifier> moveSquare </identifier>
+category: subroutine
+defined or used: used
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
