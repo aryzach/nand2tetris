@@ -766,6 +766,49 @@ class CompilationEngine:
 			self.outfile.write('index: {}'.format(self.st.indexOf(name)))
 			self.outfile.write('\n')
 
+class VMWriter:
+	def __init__(self, outfile):
+		#create .vm file
+		self.outfile = open(outfile)
+
+	def writePush(self, segment, index):
+		#segment is constant, argument, local, static, this, that, pointer, temp, index is integer
+		return 0
+
+	def writePop(self, segment, index):
+		return 0
+
+	def writeArithmetic(self, command):
+		#command is add, sub, neg, eq, gt, lt, and, or, not
+		return 0
+
+	def writeLabel(self, label):
+		return 0
+
+	def writeGoto(self, label):
+		return 0
+
+	def writeIf(self, label):
+		#write if-goto
+		return 0
+
+	def writeCall(self, name, nArgs):
+		#VM call command
+		return 0
+
+	def writeFunction(self, name, nLocals):
+		#VM function command
+		return 0
+
+	def writeReturn(self):
+		#VM return command
+		return 0
+
+	def close(self):
+		self.outfile.close()
+
+
+
 if __name__ == '__main__':
 	path = sys.argv[-1].split('/')[0]
 	if os.path.isdir(path):
